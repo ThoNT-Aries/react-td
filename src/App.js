@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import { useReducer } from 'react';
+
+const reducer = (state, action) => {
+  switch (action) {
+    case 'Tang':
+      return state + 1;
+    case 'Giam':
+      return state - 1;
+    case 'Xoa':
+      return 0;
+    default : 
+    return state;
+  }
+}
 
 function App() {
+  const [count, dispath] = useReducer(reducer, 0)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1> count  : {count}</h1>
+      <button onClick={() => dispath('Tang')}>Tang</button>
+      <button onClick={() => dispath('Giam')}>Giam</button>
+      <button onClick={() => dispath('Xoa')}>Xoa</button>
+      <input type='number' onChange={()=> dispath()}/>
     </div>
   );
 }
